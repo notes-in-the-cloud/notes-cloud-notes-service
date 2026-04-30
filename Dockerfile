@@ -16,6 +16,6 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-EXPOSE 8080
+EXPOSE 8082
 
 ENTRYPOINT ["dotnet", "NotesService.dll"]
