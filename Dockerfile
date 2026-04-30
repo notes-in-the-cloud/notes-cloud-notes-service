@@ -11,11 +11,11 @@ COPY NotesService/NotesService/. ./NotesService/
 RUN dotnet publish NotesService/NotesService.csproj -c Release -o /app/publish
 
 # ---------- RUNTIME STAGE ----------
-#FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
-#WORKDIR /app
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+WORKDIR /app
 
-#COPY --from=build /app/publish .
+COPY --from=build /app/publish .
 
-#EXPOSE 8080
+EXPOSE 8080
 
-#ENTRYPOINT ["dotnet", "NotesService.dll"]
+ENTRYPOINT ["dotnet", "NotesService.dll"]
