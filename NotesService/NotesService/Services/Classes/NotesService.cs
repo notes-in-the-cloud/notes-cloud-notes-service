@@ -10,22 +10,22 @@ namespace NotesService.Services.Classes
             throw new NotImplementedException();
         }
 
-        public void Delete(Guid userId, Guid id)
+        public void Delete(int userId, int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Note> GetAll(Guid userId)
+        public List<Note> GetAll(int userId)
         {
             throw new NotImplementedException();
         }
 
-        public Note GetById(Guid userId, Guid id)
+        public Note GetById(int userId, int id)
         {
             throw new NotImplementedException();
         }
 
-        public Note Update(Guid userId, Guid noteId, UpdateNoteDto updatedNote)
+        public Note Update(int userId, int noteId, UpdateNoteDto updatedNote)
         {
             throw new NotImplementedException();
         }

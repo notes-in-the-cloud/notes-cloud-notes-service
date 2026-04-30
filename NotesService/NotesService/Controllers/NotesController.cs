@@ -14,31 +14,31 @@ public class NotesController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAll(Guid userId)
+    public IActionResult GetAll(int userId)
     {
         return Ok("hello");
     }
 
     [HttpGet("{noteId}")]
-    public IActionResult GetById(Guid userId, Guid noteId)
+    public IActionResult GetById(int userId, int noteId)
     {
         return Ok("hello");
     }
 
     [HttpPost]
-    public IActionResult Create(Guid userId, Note note)
+    public IActionResult Create(int userId, CreateNoteDto note)
     {
         return Ok("hello");
     }
 
     [HttpPut("{noteId}")]
-    public IActionResult Update(Guid userId, Guid noteId, UpdateNoteDto dto)
+    public IActionResult Update(int userId, int noteId, UpdateNoteDto dto)
     {
         return Ok("hello");
     }
 
     [HttpDelete("{noteId}")]
-    public IActionResult Delete(Guid userId, Guid noteId)
+    public IActionResult Delete(int userId, int noteId)
     {
         return Ok("hello");
     }
