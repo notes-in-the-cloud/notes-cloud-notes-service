@@ -20,12 +20,11 @@ namespace NotesService.Services.Classes
             using var connection = CreateConnection();
             var id = Guid.NewGuid();
             var now = DateTime.UtcNow;
-            var priority = string.IsNullOrEmpty(note.Priority) ? "None" : note.Priority;
 
             connection.Execute(
-                @"INSERT INTO notes (id, user_id, title, content, color, priority, created_at) 
-                  VALUES (@Id, @UserId, @Title, @Content, @Color, @Priority, @CreatedAt)",
-                new { Id = id, UserId = userId, note.Title, note.Content, note.Color, Priority = priority, CreatedAt = now }
+                @"INSERT INTO notes (id, user_id, title, content, color, created_at) 
+                  VALUES (@Id, @UserId, @Title, @Content, @Color, @CreatedAt)",
+                new { Id = id, UserId = userId, note.Title, note.Content, note.Color, CreatedAt = now }
                 );
 
             return new Note
@@ -35,7 +34,6 @@ namespace NotesService.Services.Classes
                 Title = note.Title,
                 Content = note.Content,
                 Color = note.Color,
-                Priority = Enum.Parse<Priority>(priority, ignoreCase: true),
                 CreatedAt = now,
             };
         }
@@ -52,7 +50,7 @@ namespace NotesService.Services.Classes
         {
             using var connection = CreateConnection();
             var notes = connection.Query<Note>(
-                "SELECT id, user_id AS UserId, title, content, color, priority, created_at AS CreatedAt, updated_at AS UpdatedAt FROM notes WHERE user_id = @UserId",
+                "SELECT id, user_id AS UserId, title, content, color, created_at AS CreatedAt, updated_at AS UpdatedAt FROM notes WHERE user_id = @UserId",
                 new { UserId = userId });
             return notes.ToList();
         }
@@ -61,7 +59,7 @@ namespace NotesService.Services.Classes
         {
             using var connection = CreateConnection();
             return connection.QueryFirstOrDefault<Note>(
-                "SELECT id, user_id AS UserId, title, content, color, priority, created_at AS CreatedAt, updated_at AS UpdatedAt FROM notes WHERE id = @Id AND user_id = @UserId",
+                "SELECT id, user_id AS UserId, title, content, color, created_at AS CreatedAt, updated_at AS UpdatedAt FROM notes WHERE id = @Id AND user_id = @UserId",
                 new { Id = id, UserId = userId });
         }
 
@@ -71,9 +69,9 @@ namespace NotesService.Services.Classes
             var now = DateTime.UtcNow;
 
             connection.Execute(
-                @"UPDATE notes SET title = @Title, content = @Content, color = @Color, priority = @Priority, updated_at = @UpdatedAt 
+                @"UPDATE notes SET title = @Title, content = @Content, color = @Color, updated_at = @UpdatedAt 
                   WHERE id = @Id AND user_id = @UserId",
-                new { updatedNote.Title, updatedNote.Content, updatedNote.Color, updatedNote.Priority, UpdatedAt = now, Id = noteId, UserId = userId });
+                new { updatedNote.Title, updatedNote.Content, updatedNote.Color, UpdatedAt = now, Id = noteId, UserId = userId });
             return GetById(userId, noteId);
         }
     }
