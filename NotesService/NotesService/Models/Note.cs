@@ -12,19 +12,8 @@
 
         public string Color { get; set; }
 
-        public Priority Priority { get; set; }
-
         public DateTime UpdatedAt { get; set; }
 
         public DateTime CreatedAt { get; set; }
-    }
-
-    public enum Priority
-    {
-        Urgent,
-        High,
-        Medium,
-        Low,
-        None
     }
 }

@@ -10,7 +10,5 @@ namespace NotesService.Models
         public required string Content { get; set; }
         [Required]
         public required string Color { get; set; }
-        [Required]
-        public required string Priority { get; set; }
     }
 }
