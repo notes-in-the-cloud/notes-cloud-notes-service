@@ -4,11 +4,11 @@ namespace NotesService.Services.Interfaces
 {
     public interface INotesService
     {
-        List<Note> GetAll(int userId);
-        Note GetById(int userId, int id);
-        Note Create(Note note);
-        void Delete(int userId, int id);
+        List<Note> GetAll(Guid userId);
+        Note? GetById(Guid userId, Guid id);
+        Note Create(Guid userId, NoteDto note);
+        void Delete(Guid userId, Guid id);
 
-        Note Update(int userId, int noteId, UpdateNoteDto updatedNote);
+        Note? Update(Guid userId, Guid noteId, NoteDto updatedNote);
     }
 }
