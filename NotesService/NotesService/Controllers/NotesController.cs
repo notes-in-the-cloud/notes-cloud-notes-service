@@ -14,32 +14,45 @@ public class NotesController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAll(int userId)
+    public IActionResult GetAll(Guid userId)
     {
-        return Ok("hello");
+        var notes = _service.GetAll(userId);
+        return Ok(notes);
     }
 
     [HttpGet("{noteId}")]
-    public IActionResult GetById(int userId, int noteId)
+    public IActionResult GetById(Guid userId, Guid noteId)
     {
-        return Ok("hello");
+        var note = _service.GetById(userId, noteId);
+        if(note == null)
+        {
+            return NotFound();
+        }
+        return Ok(note);
     }
 
     [HttpPost]
-    public IActionResult Create(int userId, CreateNoteDto note)
+    public IActionResult Create(Guid userId, NoteDto noteDto)
     {
-        return Ok("hello");
+        var note = _service.Create(userId, noteDto);
+        return Created($"api/users/{userId}/notes/{note.Id}", note);
     }
 
     [HttpPut("{noteId}")]
-    public IActionResult Update(int userId, int noteId, UpdateNoteDto dto)
+    public IActionResult Update(Guid userId, Guid noteId, NoteDto noteDto)
     {
-        return Ok("hello");
+        var note = _service.Update(userId, noteId, noteDto);
+        if (note == null)
+        {
+            return NotFound();
+        }
+        return Ok(note);
     }
 
     [HttpDelete("{noteId}")]
-    public IActionResult Delete(int userId, int noteId)
+    public IActionResult Delete(Guid userId, Guid noteId)
     {
-        return Ok("hello");
+        _service.Delete(userId, noteId);
+        return NoContent();
     }
 }
