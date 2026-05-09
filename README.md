@@ -1,4 +1,4 @@
-Notes API
+Notes API Readme
 
 This service provides CRUD operations for managing user notes. Each note is associated with a specific user and is accessed via RESTful endpoints.
 
