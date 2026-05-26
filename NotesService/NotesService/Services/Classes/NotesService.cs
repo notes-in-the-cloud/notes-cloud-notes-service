@@ -22,9 +22,9 @@ namespace NotesService.Services.Classes
             var now = DateTime.UtcNow;
 
             connection.Execute(
-                @"INSERT INTO notes (id, user_id, title, content, color, created_at) 
-                  VALUES (@Id, @UserId, @Title, @Content, @Color, @CreatedAt)",
-                new { Id = id, UserId = userId, note.Title, note.Content, note.Color, CreatedAt = now }
+                @"INSERT INTO notes (id, user_id, title, content, color, created_at, updated_at) 
+                  VALUES (@Id, @UserId, @Title, @Content, @Color, @CreatedAt, @UpdatedAt)",
+                new { Id = id, UserId = userId, note.Title, note.Content, note.Color, CreatedAt = now, UpdatedAt = now }
                 );
 
             return new Note
@@ -35,6 +35,7 @@ namespace NotesService.Services.Classes
                 Content = note.Content,
                 Color = note.Color,
                 CreatedAt = now,
+                UpdateAt = now,
             };
         }
 
