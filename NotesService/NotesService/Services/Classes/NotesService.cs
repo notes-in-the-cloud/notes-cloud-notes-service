@@ -35,7 +35,7 @@ namespace NotesService.Services.Classes
                 Content = note.Content,
                 Color = note.Color,
                 CreatedAt = now,
-                UpdateAt = now,
+                UpdatedAt = now,
             };
         }
 
