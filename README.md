@@ -1,4 +1,21 @@
 Notes API Readme
+
+NotesService
+│
+├── Controllers
+│   └── NotesController.cs
+│
+├── Models
+│   ├── Note.cs
+│   └── NoteDTO.cs
+│
+├── Services
+│
+├── Program.cs
+├── appsettings.json
+├── appsettings.Development.json
+├── NotesService.csproj
+
 This is a C# ASP.NET Core REST API service that provides CRUD operations for managing user notes. Each note is associated with a specific user and is accessed via RESTful endpoints.
 
 Base Route
